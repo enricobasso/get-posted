@@ -15,7 +15,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     component: MainLayout,
-    children: [{ path: '', name: 'DashboardView', component: IndexPage }]
+    children: [{ path: '', name: 'DashboardView', component: IndexPage }],
+    meta: { requiresAuth: true }
   },
 
   // Always leave this as last one,

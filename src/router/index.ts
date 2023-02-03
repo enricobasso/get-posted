@@ -1,4 +1,5 @@
 import { route } from 'quasar/wrappers'
+import { useUserSessionStore } from 'src/stores/userSession'
 import {
   createMemoryHistory,
   createRouter,
@@ -30,6 +31,15 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
+  })
+
+  Router.beforeEach((to, from, next) => {
+    const userSession = useUserSessionStore()
+    if (to.matched.some(record => record.meta.requiresAuth) && !userSession.isLoggedIn) {
+      next({ name: 'HomeView', query: { nextRoute: to.fullPath } })
+    } else {
+      next()
+    }
   })
 
   return Router
