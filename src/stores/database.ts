@@ -34,7 +34,8 @@ export interface UserData {
 
 export const useDatabaseStore = defineStore('database', {
   state: () => ({
-    data: [] as UserData[]
+    data: [] as UserData[],
+    loading: false as boolean
   }),
   persist: false,
   getters: {
@@ -42,6 +43,7 @@ export const useDatabaseStore = defineStore('database', {
   },
   actions: {
     getData () {
+      this.loading = true
       if (this.data.length === 0) {
         fetch('https://jsonplaceholder.typicode.com/users')
           .then((response) => response.json())
@@ -60,6 +62,8 @@ export const useDatabaseStore = defineStore('database', {
                   this.data[post.userId - 1].posts.push(post)
                 })
               })
+
+            console.log(this.data[0].user.email)
           })
           .catch(() => {
             /**
@@ -68,6 +72,7 @@ export const useDatabaseStore = defineStore('database', {
             console.log('ERRORE')
           })
       }
+      this.loading = false
     }
   }
 })

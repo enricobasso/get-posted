@@ -1,21 +1,19 @@
 import { RouteRecordRaw } from 'vue-router'
-
-import MainLayout from 'src/layouts/MainLayout.vue'
-import IndexPage from 'src/pages/IndexPage.vue'
-
+import DashboardPage from 'src/pages/DashboardPage.vue'
 import HomeLayout from 'src/layouts/HomeLayout.vue'
 import HomePage from 'src/pages/HomePage.vue'
+import DashboardLayout from 'src/layouts/DashboardLayout.vue'
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '/home',
     component: HomeLayout,
     children: [{ path: '', name: 'HomeView', component: HomePage }]
   },
   {
-    path: '/dashboard',
-    component: MainLayout,
-    children: [{ path: '', name: 'DashboardView', component: IndexPage }],
+    path: '/',
+    component: DashboardLayout,
+    children: [{ path: '', name: 'DashboardView', component: DashboardPage }],
     meta: { requiresAuth: true }
   },
 

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { useDatabaseStore, UserData } from './database'
+import { useDatabaseStore, User } from './database'
 
 export const useUserSessionStore = defineStore('userSession', {
   state: () => ({
-    user: null as UserData | null,
+    user: null as User | null,
     isLoggedIn: false
   }),
   persist: false,
@@ -16,10 +16,10 @@ export const useUserSessionStore = defineStore('userSession', {
       const newUser = database.$state.data.find(userData => userData.user.email === email)
 
       if (newUser) {
-        this.user = newUser
+        this.user = newUser.user
         this.isLoggedIn = true
 
-        if (nextRoute === '') {
+        if (!nextRoute) {
           nextRoute = '/dashboard'
         }
         this.router.push({ path: nextRoute })
