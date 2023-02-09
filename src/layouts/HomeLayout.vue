@@ -17,11 +17,5 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
-    <q-footer
-      class="bg-white text-grey-8"
-    >
-      Made for the love of posting by Enrico Basso
-    </q-footer>
   </q-layout>
 </template>
