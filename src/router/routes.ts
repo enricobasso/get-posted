@@ -16,7 +16,7 @@ const routes: RouteRecordRaw[] = [
     component: DashboardLayout,
     children: [
       { path: '', name: 'DashboardView', component: DashboardPage },
-      { path: '', name: 'NewPostView', component: NewPostPage }
+      { path: '/new-post', name: 'NewPostView', component: NewPostPage }
     ],
     meta: { requiresAuth: true }
   },
