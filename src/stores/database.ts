@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import { useUserSessionStore } from './userSession'
+import { shuffle as _shuffle } from 'lodash-es'
 
 export interface Post {
   userId: number,
@@ -73,15 +75,33 @@ export const useDatabaseStore = defineStore('database', {
           })
       }
       this.loading = false
+    },
+    addNewPost (title: string, body: string) {
+      const userSession = useUserSessionStore()
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          body,
+          userId: userSession.user?.id
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+        .then((response) => response.json())
+        .then((newPost: Post) => {
+          // add post to local database
+          this.data.find(userData => userData.user.id === userSession.user?.id)?.posts.push(newPost)
+          this.data.sort((a, b) => b.posts.length - a.posts.length)
+        })
+        .catch(error => {
+          // TODO
+          console.log(error)
+        })
+    },
+    shuffle () {
+      this.data = _shuffle(this.data)
     }
   }
 })
-
-/*
-            .catch(() => {
-              /**
-     * TODO errors
-     */
-/* console.log('ERRORE')
-            })
-        }) */

@@ -1,23 +1,20 @@
 <template>
-  <q-page
-    class="row justify-evenly"
-    padding
-  >
-    <div>
-      <p>Welcome back {{ userSession.$state.user?.name }}</p>
-      <p>
-        {{ database.$state.data.find(userData => userData.user.id === userSession.$state.user?.id)?.posts.length }} posts
-      </p>
-      Write a new post!
-    </div>
-    <ranking-list />
-  </q-page>
+  <div>
+    <p>Welcome back {{ userSession.user?.name }}</p>
+    <p>
+      {{ database.$state.data.find(userData => userData.user.id === userSession.user?.id)?.posts.length }} posts
+    </p>
+    <router-link :to="{ name: 'NewPostView'}">
+      Write a new Post!
+    </router-link>
+  </div>
+  Position: {{ userSession.rankingPosition }}
 </template>
 
 <script setup lang="ts">
 import { useUserSessionStore } from 'src/stores/userSession'
 import { useDatabaseStore } from 'src/stores/database'
-import RankingList from 'src/components/RankingList.vue'
+import { RouterLink } from 'vue-router'
 
 const userSession = useUserSessionStore()
 const database = useDatabaseStore()

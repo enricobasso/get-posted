@@ -3,6 +3,7 @@ import DashboardPage from 'src/pages/DashboardPage.vue'
 import HomeLayout from 'src/layouts/HomeLayout.vue'
 import HomePage from 'src/pages/HomePage.vue'
 import DashboardLayout from 'src/layouts/DashboardLayout.vue'
+import NewPostPage from 'src/pages/NewPostPage.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,7 +14,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: DashboardLayout,
-    children: [{ path: '', name: 'DashboardView', component: DashboardPage }],
+    children: [
+      { path: '', name: 'DashboardView', component: DashboardPage },
+      { path: '', name: 'NewPostView', component: NewPostPage }
+    ],
     meta: { requiresAuth: true }
   },
 

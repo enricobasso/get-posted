@@ -8,7 +8,10 @@ export const useUserSessionStore = defineStore('userSession', {
   }),
   persist: false,
   getters: {
-
+    rankingPosition (): number {
+      const database = useDatabaseStore()
+      return database.data.findIndex(userData => userData.user.id === this.user?.id) + 1
+    }
   },
   actions: {
     login (email: string, nextRoute: string) {

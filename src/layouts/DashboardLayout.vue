@@ -33,13 +33,20 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <q-page
+        class="row justify-evenly"
+        padding
+      >
+        <router-view />
+        <ranking-list />
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import RankingList from 'src/components/RankingList.vue'
 
 const leftDrawerOpen = ref(false)
 
