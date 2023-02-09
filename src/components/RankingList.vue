@@ -1,21 +1,39 @@
 <template>
-  <div>
+  <div
+    class="q-pa-md"
+    style="max-width: 600px;"
+  >
+    <div class="text-h3">
+      Leaderboard
+    </div>
     <q-list
       v-if="!database.$state.loading"
       bordered
       separator
+      class="q-mt-lg"
     >
       <TransitionGroup
         name="fade"
       >
         <q-item
-          v-for="userData in database.data"
+          v-for="(userData, index) in database.data"
           :key="userData"
           v-ripple
           clickable
         >
+          <q-item-section avatar>
+            {{ index + 1 }}
+          </q-item-section>
+          <q-item-section avatar>
+            <q-avatar>
+              <img
+                :src="userData.user.avatar"
+                alt="avatar"
+              >
+            </q-avatar>
+          </q-item-section>
           <q-item-section>
-            <q-item-label>{{ userData.user.name }}</q-item-label>
+            <q-item-label>{{ userData.user.username }}</q-item-label>
             <q-item-label caption>
               {{ userData.posts.length }} posts
             </q-item-label>

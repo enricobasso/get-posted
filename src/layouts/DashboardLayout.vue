@@ -1,51 +1,8 @@
 <template>
-  <q-layout view="hHh lpR lFr">
-    <q-header
-      elevated
-      class="bg-primary text-white"
-    >
-      <q-toolbar>
-        <q-btn
-          dense
-          flat
-          round
-          icon="menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Get Posted
-        </q-toolbar-title>
-
-        <q-btn
-          icon="person"
-          flat
-          rounded
-        >
-          <q-menu>
-            <q-list style="min-width: 100px">
-              <q-item
-                v-close-popup
-                clickable
-                @click="userSession.logout"
-              >
-                <q-item-section avatar>
-                  <q-icon
-                    color="primary"
-                    name="logout"
-                  />
-                </q-item-section>
-                <q-item-section>Logout</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-      </q-toolbar>
-    </q-header>
-
+  <q-layout
+    view="hHh lpR lFr"
+  >
+    <toolbar-header />
     <q-drawer
       v-model="leftDrawerOpen"
       side="left"
@@ -74,10 +31,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import ToolbarHeader from 'src/components/ToolbarHeader.vue'
 import RankingList from 'src/components/RankingList.vue'
-import { useUserSessionStore } from 'src/stores/userSession'
-
-const userSession = useUserSessionStore()
 
 const leftDrawerOpen = ref(false)
 
@@ -85,3 +40,9 @@ function toggleLeftDrawer () {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
+
+<style scoped>
+.q-toolbar-title {
+  cursor: pointer;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="q-pa-md"
+    class="q-pa-md q-pr-xl q-mb-xl"
   >
     <div class="text-h3">
       New post

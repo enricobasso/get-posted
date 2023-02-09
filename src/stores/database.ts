@@ -26,7 +26,8 @@ export interface User {
   name: string,
   phone: string,
   username: string,
-  website: string
+  website: string,
+  avatar: string | null
 }
 
 export interface UserData {
@@ -51,6 +52,7 @@ export const useDatabaseStore = defineStore('database', {
           .then((response) => response.json())
           .then((usersData: User[]) => {
             usersData.forEach(user => {
+              user.avatar = 'https://api.multiavatar.com/' + user.name + '.png'
               this.data.push({ user, posts: [] })
             })
 

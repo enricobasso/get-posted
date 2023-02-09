@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md q-mb-lg">
     <div class="text-h3">
       Dashboard
     </div>
