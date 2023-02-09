@@ -49,7 +49,7 @@ export const useUserSessionStore = defineStore('userSession', {
         this.isLoggedIn = true
 
         if (!nextRoute) {
-          nextRoute = '/dashboard'
+          nextRoute = '/'
         }
         this.router.push({ path: nextRoute })
       } else {
@@ -58,6 +58,11 @@ export const useUserSessionStore = defineStore('userSession', {
          */
         console.log('Login error')
       }
+    },
+    logout () {
+      this.user = null
+      this.isLoggedIn = false
+      this.router.push({ name: 'HomeView' })
     }
   }
 })
