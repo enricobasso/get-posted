@@ -3,10 +3,12 @@
     <div class="text-h3">
       Dashboard
     </div>
-    <p class="text-subtitle1 q-mt-md">
-      Welcome back, <span class="text-h6">{{ userSession.user?.name }}</span>!
+    <p class="text-body2 q-mt-lg">
+      Welcome back, <span class="text-weight-bold">{{ userSession.user?.username }}</span>!
     </p>
-    <p>Here it is what's happened so far:</p>
+    <p class="text-body2">
+      Here is what's happened so far:
+    </p>
     <div class="row">
       <q-card
         v-for="(statistic, index) in userSession.userStatistics"
@@ -22,17 +24,16 @@
           </div>
         </q-card-section>
       </q-card>
-
-      <p class="q-mt-md">
-        What are you waiting for?
-        <q-btn
-          :to="{ name: 'NewPostView'}"
-          color="primary"
-          label="Add new post"
-          class="q-ml-md"
-        />
-      </p>
     </div>
+    <p class="q-mt-md">
+      What are you waiting for?
+      <q-btn
+        :to="{ name: 'NewPostView'}"
+        color="primary"
+        label="Add new post"
+        class="q-ml-md"
+      />
+    </p>
   </div>
 </template>
 

@@ -1,36 +1,54 @@
 <template>
-  <q-form @submit="database.addNewPost(title, body)">
-    <div class="">
-      <q-input
-        v-model="title"
-        outlined
-        label="Title"
-        :rules="[
-          val => !!val || '* Required',
-        ]"
-        lazy-rules
-      />
-      <q-input
-        v-model="body"
-        outlined
-        label="Text"
-        :rules="[
-          val => !!val || '* Required',
-        ]"
-        lazy-rules
-      />
-      <q-btn
-        color="primary"
-        label="cancel"
-        @click="cancelPost"
-      />
-      <q-btn
-        type="submit"
-        color="primary"
-        label="Save"
-      />
+  <div
+    class="q-pa-md"
+  >
+    <div class="text-h3">
+      New post
     </div>
-  </q-form>
+    <q-form
+      style="width: 100%;"
+      class="q-mt-lg"
+      @submit="database.addNewPost(title, body)"
+    >
+      <div class="">
+        <q-input
+          v-model="title"
+          outlined
+          label="Title"
+          :rules="[
+            val => !!val || '* Required',
+          ]"
+          lazy-rules
+        />
+        <q-input
+          v-model="body"
+          outlined
+          type="textarea"
+          label="Text"
+          :rules="[
+            val => !!val || '* Required',
+          ]"
+          lazy-rules
+        />
+        <div class="row justify-end">
+          <q-btn
+            color="primary"
+            label="cancel"
+            outline
+            class="q-mr-md"
+            @click="cancelPost"
+          />
+          <q-btn
+            type="submit"
+            color="primary"
+            label="Save"
+            icon="save"
+          />
+        </div>
+      </div>
+    </q-form>
+  </div>
+
   <q-dialog
     v-model="addressDialog"
     persistent
@@ -42,7 +60,7 @@
           color="warning"
           text-color="white"
         />
-        <span class="q-ml-sm q-mt-md">There are changes that you haven't saved yet. Do you still want to exit this page?</span>
+        <span class="q-ml-sm q-mt-md">There are changes that aren't saved yet. Do you still want to exit this page?</span>
       </q-card-section>
 
       <q-card-actions align="right">

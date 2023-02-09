@@ -1,30 +1,32 @@
 <template>
-  <q-list
-    v-if="!database.$state.loading"
-    bordered
-    separator
-  >
-    <TransitionGroup
-      name="fade"
+  <div>
+    <q-list
+      v-if="!database.$state.loading"
+      bordered
+      separator
     >
-      <q-item
-        v-for="userData in database.data"
-        :key="userData"
-        v-ripple
-        clickable
+      <TransitionGroup
+        name="fade"
       >
-        <q-item-section>
-          <q-item-label>{{ userData.user.name }}</q-item-label>
-          <q-item-label caption>
-            {{ userData.posts.length }} posts
-          </q-item-label>
-        </q-item-section>
-      </q-item>
-    </TransitionGroup>
-  </q-list>
-  <button @click="database.shuffle">
-    shuffle
-  </button>
+        <q-item
+          v-for="userData in database.data"
+          :key="userData"
+          v-ripple
+          clickable
+        >
+          <q-item-section>
+            <q-item-label>{{ userData.user.name }}</q-item-label>
+            <q-item-label caption>
+              {{ userData.posts.length }} posts
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+      </TransitionGroup>
+    </q-list>
+    <button @click="database.shuffle">
+      shuffle
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
