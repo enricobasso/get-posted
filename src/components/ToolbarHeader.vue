@@ -17,9 +17,10 @@
           style="cursor: pointer;"
           @click="router.push({path: '/'})"
         >
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
+          <q-avatar
+            icon="newspaper"
+            size="60px"
+          />
           GetPosted
         </div>
       </q-toolbar-title>

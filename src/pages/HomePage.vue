@@ -3,41 +3,40 @@
     class="row"
     padding
   >
-    <div class="col-sm-12 col-md-6 col-grow">
+    <div class="col-12 col-md-6 col-grow">
       <ranking-list />
     </div>
-    <div class="col-sm-12 col-md-6">
-      <div
-        class="q-pa-md"
-      >
-        <div class="text-h3">
-          Log in
-        </div>
-        <q-form
-          class="q-mt-lg"
-          @submit="userSession.login(email, nextRoute)"
-        >
-          <div class="column">
-            <q-input
-              v-model="email"
-              outlined
-              label="Email"
-              :rules="[
-                val => !!val || '* Required',
-              ]"
-              lazy-rules
-            />
-            <div class="row justify-end">
-              <q-btn
-                type="submit"
-                color="primary"
-                label="Login"
-              />
-            </div>
-          </div>
-        </q-form>
-        {{ database.$state?.data[0]?.user?.email }}
+    <div
+      style="max-width: 600px;"
+      class="col-12 col-md-6 q-pa-md "
+    >
+      <div class="text-h3">
+        Log in
       </div>
+      <q-form
+        class="q-mt-lg"
+        @submit="userSession.login(email, nextRoute)"
+      >
+        <div class="column">
+          <q-input
+            v-model="email"
+            outlined
+            label="Email"
+            :rules="[
+              val => !!val || '* Required',
+            ]"
+            lazy-rules
+          />
+          <div class="row justify-end">
+            <q-btn
+              type="submit"
+              color="primary"
+              label="Login"
+            />
+          </div>
+        </div>
+      </q-form>
+      {{ database.$state?.data[0]?.user?.email }}
     </div>
   </q-page>
 </template>

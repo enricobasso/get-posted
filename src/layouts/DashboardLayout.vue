@@ -18,10 +18,10 @@
         class="row"
         padding
       >
-        <div class="col-md-8 col-grow">
+        <div class="col-12 col-md-8 col-grow">
           <router-view />
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-md-4">
           <ranking-list />
         </div>
       </q-page>

@@ -38,12 +38,18 @@
               {{ userData.posts.length }} posts
             </q-item-label>
           </q-item-section>
+          <q-item-section
+            v-if="index in [0,1,2]"
+            side
+          >
+            <q-icon
+              name="workspace_premium"
+              :color="getColor(index)"
+            />
+          </q-item-section>
         </q-item>
       </TransitionGroup>
     </q-list>
-    <button @click="database.shuffle">
-      shuffle
-    </button>
   </div>
 </template>
 
@@ -51,6 +57,14 @@
 import { useDatabaseStore } from 'src/stores/database'
 
 const database = useDatabaseStore()
+
+function getColor (index: number): string {
+  if (index === 0) return 'yellow'
+  if (index === 1) return 'grey'
+  if (index === 2) return 'brown'
+
+  return 'grey'
+}
 </script>
 
 <style>

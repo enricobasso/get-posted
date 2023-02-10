@@ -25,7 +25,8 @@ export const useUserSessionStore = defineStore('userSession', {
         distanceDefender = database.data[defender].posts.length - database.data[this.rankingPosition - 1].posts.length
       }
       defender += 2
-      statistics.push({ name: 'Distance to #' + defender, value: distanceDefender + ' posts' })
+      let posts = distanceDefender !== 1 ? 'posts' : 'post'
+      statistics.push({ name: 'Distance to #' + defender, value: distanceDefender + ' ' + posts })
 
       let attacker = this.rankingPosition
       let distanceAttacker = 0
@@ -34,7 +35,8 @@ export const useUserSessionStore = defineStore('userSession', {
         distanceAttacker = database.data[this.rankingPosition - 1].posts.length - database.data[attacker].posts.length
       }
       attacker++
-      statistics.push({ name: 'Distance to #' + attacker, value: distanceAttacker + ' posts' })
+      posts = distanceAttacker !== 1 ? 'posts' : 'post'
+      statistics.push({ name: 'Distance to #' + attacker, value: distanceAttacker + ' ' + posts })
 
       return statistics
     }
