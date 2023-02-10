@@ -1,14 +1,15 @@
 <template>
   <div
-    class="q-pa-md q-pr-xl q-mb-xl"
+    class="q-pa-md q-mb-xl"
+    style="max-width: 600px;"
   >
     <div class="text-h3">
       New post
     </div>
     <q-form
-      style="width: 100%;"
+      ref="newPostForm"
       class="q-mt-lg"
-      @submit="database.addNewPost(title, body)"
+      @submit="savePost"
     >
       <div class="">
         <q-input
@@ -85,6 +86,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 import { useDatabaseStore } from 'src/stores/database'
 
 const database = useDatabaseStore()
@@ -92,6 +94,8 @@ const router = useRouter()
 const title = ref('')
 const body = ref('')
 const addressDialog = ref(false)
+const newPostForm = ref(null)
+const $q = useQuasar()
 
 function cancelPost () {
   if (title.value !== '' || body.value !== '') {
@@ -99,6 +103,14 @@ function cancelPost () {
   } else {
     router.push({ name: 'DashboardView' })
   }
+}
+
+function savePost () {
+  database.addNewPost(title.value, body.value)
+  title.value = ''
+  body.value = ''
+  newPostForm.value.resetValidation()
+  $q.notify({ type: 'positive', message: 'Post saved successfully!' })
 }
 
 </script>
