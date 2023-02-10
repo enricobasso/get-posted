@@ -44,9 +44,8 @@ import { ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useUserSessionStore } from 'src/stores/userSession'
 
-const cheerDialog = ref(true)
+const cheerDialog = ref(false)
 const userSession = useUserSessionStore()
-const message = ref('')
 const { rankingPosition } = storeToRefs(userSession)
 
 const dialogContents = ref([])
@@ -78,11 +77,8 @@ dialogContents.value = [
 ]
 
 watch(rankingPosition, (newRanking, oldRanking) => {
-  if (newRanking < oldRanking) {
-    message.value = 'Previous ranking: ' + oldRanking + ' and new ranking: ' + newRanking
+  if ((newRanking < oldRanking) && ([1, 2, 3].includes(newRanking))) {
     cheerDialog.value = true
   }
 })
-
-// 3rd: looks like someone is getting ready to rock!
 </script>
