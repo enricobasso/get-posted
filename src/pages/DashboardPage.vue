@@ -41,7 +41,10 @@
       <div class="text-h4">
         Your posts
       </div>
-      <posts-list :user-data="userData" />
+      <posts-list
+        :user-data="userData"
+        mode="lite"
+      />
     </div>
   </div>
 </template>

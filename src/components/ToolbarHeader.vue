@@ -5,18 +5,10 @@
     style="max-width: 2048px;"
   >
     <q-toolbar>
-      <!-- <q-btn
-        dense
-        flat
-        round
-        icon="menu"
-        @click="toggleLeftDrawer"
-      /> -->
-
       <q-toolbar-title>
         <div
           style="cursor: pointer;"
-          @click="router.push({path: '/'})"
+          @click="routeHome"
         >
           <q-avatar
             icon="newspaper"
@@ -64,4 +56,12 @@ import { useRouter } from 'vue-router'
 
 const userSession = useUserSessionStore()
 const router = useRouter()
+
+function routeHome () {
+  if (userSession.isLoggedIn) {
+    router.push({ name: 'DashboardView' })
+  } else {
+    router.push({ name: 'HomeView' })
+  }
+}
 </script>

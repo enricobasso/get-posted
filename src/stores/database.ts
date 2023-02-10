@@ -86,7 +86,7 @@ export const useDatabaseStore = defineStore('database', {
         })
 
         const newPost: Post = await response.json()
-        this.data.find(userData => userData.user.id === userSession.user?.id)?.posts.push(newPost)
+        this.data.find(userData => userData.user.id === userSession.user?.id)?.posts.unshift(newPost)
         this.data.sort((a, b) => b.posts.length - a.posts.length)
       } catch (error) {
         console.log(error)

@@ -26,7 +26,7 @@
             alt="avatar"
           >
         </q-avatar>
-        <div class="text-h3">
+        <div class="text-h4">
           {{ userData?.user.username }}
         </div>
         <div
@@ -48,7 +48,10 @@
           <div class="text-h4">
             Posts
           </div>
-          <posts-list :user-data="userData" />
+          <posts-list
+            :user-data="userData"
+            mode="full"
+          />
         </div>
       </div>
     </div>
