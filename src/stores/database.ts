@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useUserSessionStore } from './userSession'
-import { shuffle as _shuffle } from 'lodash-es'
 
 export interface Post {
   userId: number,
@@ -101,9 +100,6 @@ export const useDatabaseStore = defineStore('database', {
           // TODO
           console.log(error)
         })
-    },
-    shuffle () {
-      this.data = _shuffle(this.data)
     }
   }
 })
