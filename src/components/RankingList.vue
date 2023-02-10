@@ -21,6 +21,7 @@
           v-ripple
           clickable
           :class="(userSession.isLoggedIn && index === (userSession.rankingPosition -1)) ? 'bg-blue-grey-1': ''"
+          @click="router.push({name: 'ProfileView', params:{id: userData.user.id}})"
         >
           <q-item-section
             class="q-ml-md"
@@ -62,7 +63,9 @@
 <script setup lang="ts">
 import { useDatabaseStore } from 'src/stores/database'
 import { useUserSessionStore } from 'src/stores/userSession'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const database = useDatabaseStore()
 const userSession = useUserSessionStore()
 

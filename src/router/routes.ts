@@ -4,15 +4,23 @@ import HomeLayout from 'src/layouts/HomeLayout.vue'
 import HomePage from 'src/pages/HomePage.vue'
 import DashboardLayout from 'src/layouts/DashboardLayout.vue'
 import NewPostPage from 'src/pages/NewPostPage.vue'
+import ProfilePage from 'src/pages/ProfilePage.vue'
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/home',
+    path: '/',
     component: HomeLayout,
-    children: [{ path: '', name: 'HomeView', component: HomePage }]
+    children: [
+      { path: '', name: 'HomeView', component: HomePage },
+      {
+        path: '/user/:id',
+        component: ProfilePage,
+        name: 'ProfileView',
+        meta: { requiresAuth: true }
+      }]
   },
   {
-    path: '/',
+    path: '/dashboard',
     component: DashboardLayout,
     children: [
       { path: '', name: 'DashboardView', component: DashboardPage },
@@ -20,9 +28,6 @@ const routes: RouteRecordRaw[] = [
     ],
     meta: { requiresAuth: true }
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')

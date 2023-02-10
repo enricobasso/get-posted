@@ -15,7 +15,7 @@
       </div>
       <q-form
         class="q-mt-lg"
-        @submit="userSession.login(email, nextRoute)"
+        @submit="login()"
       >
         <div class="column">
           <q-input
@@ -54,6 +54,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDatabaseStore } from 'src/stores/database'
 import { useUserSessionStore } from 'src/stores/userSession'
+import { useQuasar } from 'quasar'
 import RankingList from 'src/components/RankingList.vue'
 
 const email = ref('')
@@ -61,6 +62,14 @@ const database = useDatabaseStore()
 const userSession = useUserSessionStore()
 const route = useRoute()
 const nextRoute = ref(route.query.nextRoute as string | '')
+const $q = useQuasar()
 
 database.getData()
+
+function login () {
+  const res = userSession.login(email.value, nextRoute.value)
+  if (res === -1) {
+    $q.notify({ type: 'negative', message: 'Incorrect email.' })
+  }
+}
 </script>

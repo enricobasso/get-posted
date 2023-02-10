@@ -54,7 +54,7 @@ export const useUserSessionStore = defineStore('userSession', {
     }
   },
   actions: {
-    login (email: string, nextRoute: string) {
+    login (email: string, nextRoute: string): number {
       const database = useDatabaseStore()
       const newUser = database.$state.data.find(userData => userData.user.email === email)
 
@@ -63,15 +63,14 @@ export const useUserSessionStore = defineStore('userSession', {
         this.isLoggedIn = true
 
         if (!nextRoute) {
-          nextRoute = '/'
+          nextRoute = '/dashboard'
         }
         this.router.push({ path: nextRoute })
       } else {
-        /**
-         * TODO errore
-         */
-        console.log('Login error')
+        return -1
       }
+
+      return 0
     },
     logout () {
       this.user = null

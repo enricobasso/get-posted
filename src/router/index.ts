@@ -6,6 +6,7 @@ import {
   createWebHashHistory,
   createWebHistory
 } from 'vue-router'
+import { Notify } from 'quasar'
 
 import routes from './routes'
 
@@ -36,6 +37,7 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from, next) => {
     const userSession = useUserSessionStore()
     if (to.matched.some(record => record.meta.requiresAuth) && !userSession.isLoggedIn) {
+      Notify.create({ type: 'negative', message: 'You need to be logged in in order to visit this page.' })
       next({ name: 'HomeView', query: { nextRoute: to.fullPath } })
     } else {
       next()

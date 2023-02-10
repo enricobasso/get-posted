@@ -34,13 +34,26 @@
         class="q-ml-md"
       />
     </p>
+    <div
+      class="q-mt-xl q-mb-md"
+      style="max-width: 600px;"
+    >
+      <div class="text-h4">
+        Your posts
+      </div>
+      <posts-list :user-data="userData" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useUserSessionStore } from 'src/stores/userSession'
+import { useDatabaseStore } from 'src/stores/database'
+import PostsList from 'src/components/PostsList.vue'
 
 const userSession = useUserSessionStore()
+const database = useDatabaseStore()
+const userData = database.data.find(userData => userData.user.id === userSession.user?.id)
 </script>
 
 <style scoped>
