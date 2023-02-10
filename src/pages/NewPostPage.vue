@@ -81,6 +81,8 @@
       </q-card-actions>
     </q-card>
   </q-dialog>
+
+  <cheer-dialog />
 </template>
 
 <script setup lang="ts">
@@ -88,6 +90,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
 import { useDatabaseStore } from 'src/stores/database'
+import CheerDialog from 'src/components/CheerDialog.vue'
 
 const database = useDatabaseStore()
 const router = useRouter()
