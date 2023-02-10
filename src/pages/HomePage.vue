@@ -36,7 +36,15 @@
           </div>
         </div>
       </q-form>
-      {{ database.$state?.data[0]?.user?.email }}
+      <p>Here some email for you to log in:</p>
+      <ol>
+        <li
+          v-for="(userData, index) in database.data"
+          :key="index"
+        >
+          {{ userData.user.username }}: {{ userData.user.email }}
+        </li>
+      </ol>
     </div>
   </q-page>
 </template>

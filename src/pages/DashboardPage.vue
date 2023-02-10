@@ -41,7 +41,6 @@
 import { useUserSessionStore } from 'src/stores/userSession'
 
 const userSession = useUserSessionStore()
-
 </script>
 
 <style scoped>

@@ -2,6 +2,7 @@
   <q-header
     elevated
     class="bg-primary text-white q-px-md"
+    style="max-width: 2048px;"
   >
     <q-toolbar>
       <!-- <q-btn
