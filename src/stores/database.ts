@@ -39,7 +39,6 @@ export const useDatabaseStore = defineStore('database', {
     data: [] as UserData[],
     loading: false as boolean
   }),
-  persist: false,
   getters: {
 
   },
@@ -65,8 +64,6 @@ export const useDatabaseStore = defineStore('database', {
                   this.data[post.userId - 1].posts.push(post)
                 })
               })
-
-            console.log(this.data[0].user.email)
           })
           .catch(() => {
             /**
