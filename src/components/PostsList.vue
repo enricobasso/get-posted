@@ -1,4 +1,5 @@
 <template>
+  <!-- show all posts -->
   <template v-if="mode === 'full'">
     <q-card
       v-for="(post, index) in userData.posts"
@@ -18,6 +19,7 @@
       </q-card-section>
     </q-card>
   </template>
+  <!-- show first three posts only -->
   <template v-else>
     <q-card
       v-for="(post, index) in userData.posts.slice(0, 3)"
