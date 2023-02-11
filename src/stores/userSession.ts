@@ -29,7 +29,7 @@ export const useUserSessionStore = defineStore('userSession', {
           defender = this.rankingPosition - 2
         }
         let distanceDefender = 0
-        if (defender > 0) {
+        if (defender >= 0) {
           distanceDefender = database.data[defender].posts.length - database.data[this.rankingPosition - 1].posts.length
         }
         defender++
