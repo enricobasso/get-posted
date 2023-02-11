@@ -7,7 +7,21 @@
       Leaderboard
     </div>
     <q-list
-      v-if="!database.$state.loading"
+      v-if="database.$state.loading"
+      bordered
+      separator
+      class="q-mt-lg"
+    >
+      <q-item
+        v-for="n in 10"
+        :key="n"
+        v-ripple
+      >
+        <q-item-section><q-skeleton type="rect" /></q-item-section>
+      </q-item>
+    </q-list>
+    <q-list
+      v-else
       bordered
       separator
       class="q-mt-lg"
