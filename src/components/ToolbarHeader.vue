@@ -17,6 +17,7 @@
           GetPosted
         </div>
       </q-toolbar-title>
+      <a style="color: white;font-style: none;" href="https://github.com/enricobasso/get-posted" class="q-mr-md" target="_blank" rel="noopener noreferrer">GitHub</a>
       <q-btn
         v-if="userSession.isLoggedIn"
         round
